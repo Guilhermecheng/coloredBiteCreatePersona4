@@ -13,40 +13,49 @@
 
 <body>
     <div class="characterBuider">
-        <nav class="navbar">
-            <h2>Character builder</h2>
-            <ul class="nav-list">
-                <li id="tabDefault" class="tablinks" onclick="selectionTab(this,'hairsSelect')">head</li>
-                <!-- <li><a href="#" class="tablinks">heads</a></li> -->
-                <li class="tablinks" onclick="selectionTab(this,'faceSelect')">face</li>
-                <li class="tablinks" onclick="selectionTab(this,'bodySelect')">body</li>                
-                <li class="tablinks" onclick="selectionTab(this,'glassesSelect')">accessories</li>
-            </ul>
-        </nav>
+        <header>
+
+            <div class="toggle-btn" onclick="navButtonFunction()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="navbar" id="navbar">
+                <h2>Character builder</h2>
+                <ul class="nav-list" id="nav-list">
+                    <li id="tabDefault" class="tablinks" onclick="selectionTab(this,'hairsSelect')">head</li>
+                    <!-- <li><a href="#" class="tablinks">heads</a></li> -->
+                    <li class="tablinks" onclick="selectionTab(this,'faceSelect')">face</li>
+                    <li class="tablinks" onclick="selectionTab(this,'bodySelect')">body</li>                
+                    <li class="tablinks" onclick="selectionTab(this,'glassesSelect')">accessories</li>
+                </ul>
+            </nav>
+        </header>
 
         <div class="builderBody">
             <div class="selectMenu" id="creatingMenu">
                 <!-- head options field -->
                 <div class="tabcontent hairsSelect" id="hairsSelect">
-                    <h2>Head</h2>                    
+                    <h2 class="builderbody_title">Head</h2>                    
                     <div class="headsOptions" id="headsOptions"></div>
                 </div>
                 <!-- face options field -->
                 <div class="tabcontent faceSelect" id="faceSelect">
-                    <h2>Faces</h2>
-                    <div class="facesOptions"></div>
+                    <h2 class="builderbody_title">Faces</h2>
+                    <div class="facesOptions" id="facesOptions"></div>
 
                 </div>
 
                 <!-- body options field -->
                 <div class="tabcontent bodySelect" id="bodySelect">
-                    <h2>Body</h2>
+                    <h2 class="builderbody_title">Body</h2>
                     <div class="bodyOptions" id="bodyOptions"></div>                    
                 </div>
 
                 <!-- accessiories options -->                                
                 <div class="tabcontent glassesSelect" id="glassesSelect">
-                    <h2>Glasses</h2>
+                    <h2 class="builderbody_title">Glasses</h2>
                     <div class="glassesSelectOptions" id="glassesSelectOptions"></div>
 
                     <h2>Hats</h2>
@@ -80,8 +89,11 @@
                 </div>
 
                 <div class="tabcontent " id="faceSelectColor">
-                    <h2>Face hair color?</h2>
-                    <!-- color options goes here -->
+                    <h2>Eyes</h2>
+                    <div class="eyesColorOptions" id="eyesColorOptions"></div>
+
+                    <h2>Nose</h2>
+                    <div class="noseColorOptions" id="noseColorOptions"></div>
                 </div>    
                 
                 <div class="tabcontent bodyColorSelect" id="bodySelectColor">
@@ -111,7 +123,15 @@
     </div>
 </body>
 
-
+<script type="text/javascript">
+   function navButtonFunction() {
+       var navbar = document.getElementById("navbar");
+       var navlist = document.getElementById("nav-list");
+       navlist.classList.toggle('show');
+       navbar.classList.toggle('showMenu');
+    }
+    
+</script>
 
 <script src="hairs.js"></script>
 <script src="scriptRevisado.js"></script>

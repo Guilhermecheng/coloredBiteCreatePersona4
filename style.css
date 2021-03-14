@@ -3,10 +3,28 @@ body {
     padding: 0px;
     font-family: 'Roboto', sans-serif;
     background-color: #0A0318;
+    display: flex;
+    max-width: 1000px;
 }
 
 li {
     list-style: none;
+}
+
+.toggle-btn {
+    width: 35px;
+    float: right;
+    margin: 50px 90px 0px 0px;
+    display: none;
+}
+
+.toggle-btn span {
+    display: inline-block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    float: left;
+    margin-bottom: 8px;
 }
 
 .navbar {
@@ -14,15 +32,15 @@ li {
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    /* border-bottom: 1px solid black; */
     background-color: #2B0E67;
     color: #fff;
+    box-shadow: 0 1px 0 rgb(12 13 14 / 15%);
 }
 
 .navbar h2 {
     margin-left: 30px;
     font-size: 1.8em;
-    letter-spacing: .2rem;
+    font-weight: bolder;
 }
 
 .nav-list {
@@ -46,7 +64,7 @@ li {
 
 .builderBody {
     height: 600px;
-    /* max-width: 1800px; */
+    /* max-width: 900px; */
     width: 100vw;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -77,13 +95,95 @@ li {
 }
 
 .headsOptions {
-    max-width: 400px;
-    overflow-y:auto !important;
+    margin-top: 40px;
+    margin-left: 30px;
+    overflow-y: auto;
+    max-height: 480px;
+}
+
+.headsOptions::-webkit-scrollbar {
+    width: 12px;
+    /* background-color: #F5F5F5; */
+}
+
+.headsOptions::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #240C54;
+}
+
+.headsOptions::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #0A0318;
+}
+
+.headsOptions > svg {
+    margin-right: 20px;
+}
+
+.faceSelect {
+    display: flex;
+    justify-content: center;
+}
+
+.facesOptions {
+    /* max-width: 400px; */
+    margin-top: 40px;
+    margin-left: 30px;
+    overflow-y: auto;
+    max-height: 480px;
+}
+
+.facesOptions::-webkit-scrollbar {
+    width: 12px;
+}
+
+.facesOptions::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #240C54;
+}
+
+.facesOptions::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #0A0318;
+}
+
+.facesOptions > svg {
+    margin-right: 20px;
+}
+
+.bodySelect {
+    display: flex;
+    justify-content: center;
+}
+
+.bodyOptions {
+    /* max-width: 400px; */
+    margin-top: 40px;
+    margin-left: 30px;
+    overflow-y: auto;
+    max-height: 480px;
+}
+
+.bodyOptions::-webkit-scrollbar {
+    width: 12px;
+}
+
+.bodyOptions::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #240C54;
+}
+
+.bodyOptions::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #0A0318;
+}
+
+.bodyOptions > svg {
+    margin-right: 20px;
 }
 
 .hairImgFromMenu {
     margin-right: 20px;
-    
     cursor: pointer;
 }
 
@@ -99,7 +199,12 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 800px;
+    min-width: 800px;
+}
+
+.creating > svg {
+    margin: 0 50px 0 20px;
+
 }
 
 .settings {
@@ -120,15 +225,13 @@ li {
 .submitNBackground {
     position: absolute;
     bottom: 0;
+    margin: 20px;
 }
 
 .tabcontent {
     margin: 20px;
 }
 
-.submitNBackground {
-    margin: 20px;
-}
 
 .submitButton {
     /* float: right; */
@@ -145,9 +248,92 @@ li {
     cursor: pointer;
 }
 
-/* 
-@media(max-width:700px) {
+
+@media(max-width:1400px) {
+    .creating {
+        min-width: 500px;
+}
+}
+
+@media(max-width:1100px) {
     .builderBody {
         display: block;
+        margin-top: -20px;
     }
-} */
+
+    .builderbody_title {
+        padding-top: 20px;
+    }
+
+    .selectMenu > div > div {
+        max-height: 170px;
+    }
+
+    .selectMenu > div > div > svg {
+        height: 150px;
+        margin: 10px;
+
+    }
+    
+
+    .creating > svg {
+        margin-top: 40px;
+        min-width: 200px;
+    }
+
+    .submitNBackground {
+        position: relative;
+    }
+
+    .submitButton {
+        margin-bottom: 40px;
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+    .builderBody {
+        width: 100%;
+        min-width: 100vw;
+    }
+    .toggle-btn {
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar {
+        display: block;
+        margin-top: -30px;
+        height: 100px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar > h2 {
+        padding-top: 40px;
+    }
+
+    .navbar.showMenu {
+        height: 330px;
+    }
+
+    .nav-list {
+        display: none;
+        /* background-color: yellow; */
+        width: 400px;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
+
+    .nav-list.show {
+        display: block;
+    }
+
+    .nav-list li {
+        display: block;
+        padding: 15px 0px;
+        width: 100%;
+    }
+
+
+}

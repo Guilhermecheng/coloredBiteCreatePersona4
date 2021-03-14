@@ -4,16 +4,22 @@ var main = document.getElementById("creatingMain");
 var menuList = document.getElementById("hairList");
 // hair options goes rendered here (inside menuList)
 var headsPlace = document.getElementById("headsOptions");
-
-var bodiesOptionsPlace = document.getElementById("bodySelect");
+// face options goes here
+var facesOptions = document.getElementById("facesOptions");
+var bodiesOptionsPlace = document.getElementById("bodyOptions");
 // glasses options goes rendered here
 var glassesMenuPlace = document.getElementById("glassesSelectOptions");
 // body color options goes here
 var bodyColorSelectionLocation = document.getElementById("bodyColorOptions");
 // hair color options goes here
 var hairColorSelectionLocation = document.getElementById("hairColorOptions");
-
+// hat color options
 var hatColorSelectionLocation = document.getElementById("hatColorOptions");
+
+var eyeColorSelectionLocation = document.getElementById("eyesColorOptions");
+
+var noseColorSelectionLocation = document.getElementById("noseColorOptions");
+
 // glasses color options goes here
 var glassesColorSelectionLocation = document.getElementById("glassesSelectColor");
 // background color options goes here
@@ -29,6 +35,8 @@ var glasses_color_id = glassesColors[0].id;
 var background_color_id = backgroundColors[0].id;
 var hair_color_id = hairColor[0].id;
 var hat_color_id = hatColors[0].id;
+var eye_color_id = eyesColors[0].id;
+var nose_color_id = noseColors[0].id;
  
 // render person image in page
 function renderPersona(person) {
@@ -92,6 +100,10 @@ function colorFromItems() {
     changeClothesColor(clothes_color_id);
     // hat color
     changeHatColor(hat_color_id);
+
+    changeEyesColors(eye_color_id);
+
+    changeNoseColor(nose_color_id);
 };
 
 
@@ -141,6 +153,19 @@ function changeClothesColor(opt) {
     change_clothes_color_func.createFunction(opt, clothesColor, ["clothes"], clothesColorOptions, clothesColoringrememberMe);
 };
 
+var change_eye_color_func = new Colors();
+function changeEyesColors(opt) {
+    eye_color_id = opt;
+    change_eye_color_func.createFunction(opt, eyesColors, ["eyes"], eyeColorSelectionLocation, eyeColoringRememberMe);
+};
+
+
+var change_nose_color_func = new Colors();
+function changeNoseColor(opt) {
+    nose_color_id = opt;
+    change_nose_color_func.createFunction(opt, noseColors, ["nose"], noseColorSelectionLocation, noseColoringRememberMe);
+};
+
 function changeHatColor(option) {
     hat_color_id = option;
     var color_index = hatColors.findIndex( x => x.id === option);
@@ -165,6 +190,8 @@ function changeHatColor(option) {
 // END OF COLORS PART
 
 
+
+
 // CHANGE FUNCTIONS
 // hair type change
 function changeHair(option) {
@@ -187,6 +214,27 @@ function changeHair(option) {
     colorFromItems();
 };
 
+function changeFace(option) {
+    var face_index = faceOptions.findIndex(x => x.id === option);
+    svgPersonInPage.innerHTML = "";
+    var face_eyes = faceOptions[face_index].faceCharacterImg;
+    var face_nose = faceOptions[face_index].nose;
+
+    charactDefaultMale.face = face_eyes;
+    charactDefaultMale.nose = face_nose;
+    renderPersona(charactDefaultMale);
+    colorFromItems();
+}
+
+
+function changeBody(option) {
+    var index = bodyOptions.findIndex( x => x.id === option);
+    svgPersonInPage.innerHTML = "";
+    charactDefaultMale.body = bodyOptions[index].bodyOptionSvg;
+    renderPersona(charactDefaultMale);
+    colorFromItems();
+}
+
 // glasses function
 function changeGlasses(option) {
     var glasses_id = option;
@@ -197,14 +245,6 @@ function changeGlasses(option) {
     charactDefaultMale.glasses = glassesFromDatabase;
     renderPersona(charactDefaultMale);
     // maintaining previous color changes 
-    colorFromItems();
-}
-
-function changeBody(option) {
-    var index = bodyOptions.findIndex( x => x.id === option);
-    svgPersonInPage.innerHTML = "";
-    charactDefaultMale.body = bodyOptions[index].bodyOptionSvg;
-    renderPersona(charactDefaultMale);
     colorFromItems();
 }
 
@@ -241,7 +281,7 @@ if(!pageTabs) {
 function getHairsToPage() {
     hairs.forEach((hair) => {
         var svgElem = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svgElem.setAttribute("class", "hairImgFromMenu");
+        // svgElem.setAttribute("class", "hairImgFromMenu");
         svgElem.setAttribute("width","140px");
         svgElem.setAttribute("id",hair.hairId);
         svgElem.setAttribute("onclick",`changeHair(this.id)`);
@@ -251,6 +291,18 @@ function getHairsToPage() {
     })
 }
 getHairsToPage();
+
+function getFacesToPage() {
+    faceOptions.forEach((face) => {
+        var svgElem = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svgElem.setAttribute("width","125px");
+        svgElem.setAttribute("id",face.id);
+        svgElem.setAttribute("onclick",`changeFace(this.id)`);
+        svgElem.innerHTML = face.faceMenuImg;    
+        facesOptions.appendChild(svgElem);
+    })
+};
+getFacesToPage();
 
 function getGlassesToPage() {
     glasses.forEach((glassesUnit) => {
@@ -282,17 +334,18 @@ function getGlassesToPage() {
 };
 getGlassesToPage();
 
-// function getBodiesToPage() {};
-bodyOptions.forEach((bodyOpt) => {
-    var svgElem = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svgElem.setAttribute("class", "bodyOptionImgFromMenu");
-    svgElem.setAttribute("width","150px");
-    svgElem.setAttribute("id",bodyOpt.id);
-    svgElem.setAttribute("onclick",`changeBody(this.id)`);
-    svgElem.innerHTML = bodyOpt.bodyMenuImg;    
-    bodiesOptionsPlace.appendChild(svgElem);
-});
-
+function getBodiesToPage() {
+    bodyOptions.forEach((bodyOpt) => {
+        var svgElem = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svgElem.setAttribute("class", "bodyOptionImgFromMenu");
+        svgElem.setAttribute("width","150px");
+        svgElem.setAttribute("id",bodyOpt.id);
+        svgElem.setAttribute("onclick",`changeBody(this.id)`);
+        svgElem.innerHTML = bodyOpt.bodyMenuImg;    
+        bodiesOptionsPlace.appendChild(svgElem);
+    });
+};
+getBodiesToPage();
 
 
 // constructor function for color options
@@ -353,6 +406,19 @@ function backgroundColoringRememberMe() {
     backgroundColoring.constructor(backgroundColorSelectionLocation, background_color_id, "changeBackgroundColor");
 };
 backgroundColoringRememberMe();
+
+var eyeColoring = new GetColorToPage(eyesColors);
+function eyeColoringRememberMe() {
+    eyeColoring.constructor(eyeColorSelectionLocation, eye_color_id, "changeEyesColors");
+};
+eyeColoringRememberMe();
+
+var noseColoring = new GetColorToPage(noseColors);
+function noseColoringRememberMe() {
+    noseColoring.constructor(noseColorSelectionLocation, nose_color_id, "changeNoseColor");
+}
+noseColoringRememberMe();
+
 
 function hatColor(isColorDefined) {
     hatColors.forEach((hat_color) => {
